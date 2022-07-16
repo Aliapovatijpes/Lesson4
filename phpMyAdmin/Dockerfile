@@ -10,9 +10,7 @@ RUN echo "Installing Apache and PHPMyAdmin" &&\
 RUN apt install -y apache2 apache2-utils php libapache2-mod-php \
  php-pdo php-zip php-json php-common php-fpm php-mbstring php-cli \
  php-xml php-mysql php-json php-mbstring php-xml
-
-COPY entrypointphpmyadmin.sh /usr/local/bin/
-
+ARG GITTOKEN=none
 ARG MYSQLUSERNAME=intern
 ARG MYSQLUSERPASS=onix
 ARG MYSQLIP=172.18.0.2
@@ -20,6 +18,15 @@ ARG MYSQLIP=172.18.0.2
 ENV MYSQLUSERNAME=$MYSQLUSERNAME
 ENV MYSQLUSERPASS=$MYSQLUSERPASS
 ENV MYSQLIP=$MYSQLIP
+
+#COPY entrypointphpmyadmin.sh /usr/local/bin/
+
+RUN apt-get install -y git &&\
+    git clone https://Aliapovatijpes:$GITTOKEN@github.com/Aliapovatijpes/Lesson4.git &&\
+    cp /Lesson4/phpMyAdmin/* / &&\
+	rm -r -f /Lesson4/ &&\
+	chmod +x /entrypointphpmyadmin.sh &&\
+	cp entrypointphpmyadmin.sh /usr/local/bin/
 
 ENTRYPOINT ["entrypointphpmyadmin.sh"]
 
