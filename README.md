@@ -21,4 +21,4 @@ This will create and run container in deattached mode, will use variables from e
 Docker compose serves to build images and start containers just in one command. Compose.yaml file in this repository creates images of mysql and phpmyadmin with dockerfiles in according directories. You should download the whole this repository to succesfull startup of docker-compose. Docker-compose during "composing" will: build images, create persistent volumes for both containers, create network and connect containers to it. Dockerfiles in this repository requires token to github to this repository for entrypoint.sh files downloading. You must place your token to .env file in same foler with compose.yaml file. Example of using:
 #### docker-compose up -d --build
 
-Compose.yaml file has version 3.8 
+Compose.yaml file was developped and tested on Docker Compose version v2.6.1
