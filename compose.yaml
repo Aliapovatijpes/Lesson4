@@ -1,0 +1,43 @@
+version: "3.8"
+services:
+
+ mysql:
+    build: 
+        context: ./mysql
+        args:
+           - GITTOKEN
+    env_file:
+        - ./mysql/.env
+    networks:
+        - lamp
+    expose:
+        - 3306
+    restart: always  
+    volumes:
+        - mysqldata:/var/lib/mysql
+        - mysqlconfig:/etc/mysql/mysql.conf.d
+    
+ phpmyadmin:
+    build: 
+        context: ./phpmyadmin
+        args:
+           - GITTOKEN
+    networks:
+        - lamp
+    ports:
+        - 80:80
+    env_file:
+        - ./phpmyadmin/.env
+    depends_on:
+        - mysql
+    restart: always
+    volumes:
+        - phpmyadmin:/usr/share/phpMyAdmin
+    
+networks:
+  lamp:
+
+volumes:
+  mysqldata:
+  mysqlconfig:
+  phpmyadmin:
