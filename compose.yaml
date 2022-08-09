@@ -4,7 +4,7 @@ services:
         build:
             context: ./mysql
             args:
-                - GITTOKEN=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
+                - GITTOKEN
         env_file:
             - ./mysql/1.env
         networks:
@@ -20,7 +20,7 @@ services:
         build:
             context: ./phpMyAdmin
             args:
-                - GITTOKEN=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
+                - GITTOKEN
         networks:
             - lamp
         expose:
