@@ -1,43 +1,67 @@
 version: "3.8"
 services:
+    mysql:
+        build:
+            context: ./mysql
+            args:
+                - GITTOKEN
+        env_file:
+            - ./mysql/1.env
+        networks:
+            - lamp
+        expose:
+            - 3306
+        restart: always
+        volumes:
+            - mysqldata:/var/lib/mysql
+            - mysqlconfig:/etc/mysql/mysql.conf.d
 
- mysql:
-    build: 
-        context: ./mysql
-        args:
-           - GITTOKEN
-    env_file:
-        - ./mysql/.env
-    networks:
-        - lamp
-    expose:
-        - 3306
-    restart: always  
-    volumes:
-        - mysqldata:/var/lib/mysql
-        - mysqlconfig:/etc/mysql/mysql.conf.d
-    
- phpmyadmin:
-    build: 
-        context: ./phpmyadmin
-        args:
-           - GITTOKEN
-    networks:
-        - lamp
-    ports:
-        - 80:80
-    env_file:
-        - ./phpmyadmin/.env
-    depends_on:
-        - mysql
-    restart: always
-    volumes:
-        - phpmyadmin:/usr/share/phpMyAdmin
-    
-networks:
-  lamp:
+    phpmyadmin:
+        build:
+            context: ./phpMyAdmin
+            args:
+                - GITTOKEN
+        networks:
+            - lamp
+        expose:
+            - 80
+        env_file:
+            - ./phpMyAdmin/1.env
+        depends_on:
+            - mysql
+        restart: always
+        labels:
+            - "traefik.enable=true"
+            - "traefik.http.routers.phpmyadmin.rule=Host(`internoleksii.ddns.net`)"
+            - "traefik.http.routers.phpmyadmin.entrypoints=websecure"
+            - "traefik.http.routers.phpmyadmin.tls.certresolver=myresolver"
+        volumes:
+            - phpmyadmin:/usr/share/phpMyAdmin
 
-volumes:
-  mysqldata:
-  mysqlconfig:
-  phpmyadmin:
+    traefik:
+        image: "traefik:v2.8"
+        container_name: "traefik"
+        networks:
+            - lamp
+        command:
+            #- "--log.level=DEBUG"
+            - "--api.insecure=true"
+            - "--providers.docker=true"
+            - "--providers.docker.exposedbydefault=false"
+            - "--entrypoints.websecure.address=:443"
+            - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
+            - "--certificatesresolvers.myresolver.acme.email=aliapovatijpes@gmail.com"
+            - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+        ports:
+            - "443:443"
+            - "8080:8080"
+        volumes:
+            - "./letsencrypt:/letsencrypt"
+            - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    networks:
+        lamp:
+
+    volumes:
+        mysqldata:
+        mysqlconfig:
+        phpmyadmin:
