@@ -12,7 +12,6 @@ RUN export DEBIAN_FRONTEND=noninteractive &&\
  rm mysql-apt-config_0.8.22-1_all.deb
 
 
-ARG GITTOKEN=none
 ARG MYSQLUSERNAME=intern
 ARG MYSQLUSERPASS=onix
 ARG ROOTPASS=rootpass
