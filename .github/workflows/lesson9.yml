@@ -18,18 +18,21 @@ jobs:
       - name: ls
         run:  ls
         
-  #    - name: cd phpMyAdmin
-#        run: |
-  #           pwd
-   #          cd phpMyAdmin
-   #          ls
-    #         pwd
-        
-      - name: Build the Docker image
+      
+      - name: Build the phpmyadmin image
         run:  |
               cd phpMyAdmin
-              docker build -t aliapovatijpes/lesson5:phpmyadmin-1 -t aliapovatijpes/lesson5:phpmyadmin-v1 .
-              
+              docker build -t aliapovatijpes/lesson5:phpmyadmin-latest -t aliapovatijpes/lesson5:phpmyadmin-v1 .
+              cd ..
+      
+      - name: Build the phpmyadmin image
+        run:  |
+              cd mysql
+               pwd
+               ls
+         #     docker build -t aliapovatijpes/lesson5:phpmyadmin-latest -t aliapovatijpes/lesson5:phpmyadmin-v1 .
+                    
+          
       - name: Push the image to dockerhub
-        run:  docker push      aliapovatijpes/lesson5:phpmyadmin-latest
+        run:  docker image push --all-tags aliapovatijpes/lesson5
  
