@@ -21,8 +21,8 @@ ENV MYSQLIP=$MYSQLIP
 
 #COPY entrypointphpmyadmin.sh /usr/local/bin/
 
-RUN     chmod +x ./entrypointphpmyadmin.sh &&\
-	cp ./entrypointphpmyadmin.sh /usr/local/bin/
+RUN     chmod +x ~/phpMyAdmin/entrypointphpmyadmin.sh &&\
+	cp ~/phpMyAdmin/entrypointphpmyadmin.sh /usr/local/bin/
 
 ENTRYPOINT ["entrypointphpmyadmin.sh"]
 
