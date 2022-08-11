@@ -6,7 +6,7 @@ on:
 
 jobs:
 
-  phpmyadmin:
+  build_and_push:
 
     runs-on: ubuntu-latest
 
