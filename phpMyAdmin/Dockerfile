@@ -19,10 +19,9 @@ ENV MYSQLUSERNAME=$MYSQLUSERNAME
 ENV MYSQLUSERPASS=$MYSQLUSERPASS
 ENV MYSQLIP=$MYSQLIP
 
-#COPY entrypointphpmyadmin.sh /usr/local/bin/
+COPY entrypointphpmyadmin.sh /usr/local/bin/
 
-RUN     chmod +x ~/phpMyAdmin/entrypointphpmyadmin.sh &&\
-	cp ~/phpMyAdmin/entrypointphpmyadmin.sh /usr/local/bin/
+RUN     chmod +x /usr/local/bin/entrypointphpmyadmin.sh
 
 ENTRYPOINT ["entrypointphpmyadmin.sh"]
 
