@@ -1,0 +1,14 @@
+name: dockerhub-pushing
+
+on:
+  push:
+    branches: [ "release" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
