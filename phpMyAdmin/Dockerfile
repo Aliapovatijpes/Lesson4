@@ -10,7 +10,7 @@ RUN echo "Installing Apache and PHPMyAdmin" &&\
 RUN apt install -y apache2 apache2-utils php libapache2-mod-php \
  php-pdo php-zip php-json php-common php-fpm php-mbstring php-cli \
  php-xml php-mysql php-json php-mbstring php-xml
-ARG GITTOKEN=none
+
 ARG MYSQLUSERNAME=intern
 ARG MYSQLUSERPASS=onix
 ARG MYSQLIP=mysql
