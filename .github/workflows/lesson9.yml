@@ -20,13 +20,13 @@ jobs:
       - name: Build the phpmyadmin image
         run:  |
               cd phpMyAdmin
-              docker build -t aliapovatijpes/lesson5:phpmyadmin-v$GITHUB_RUN_NUMBER -t aliapovatijpes/lesson5:phpmyadmin-latest .
+              docker build -t aliapovatijpes/phpmyadmin:$GITHUB_RUN_NUMBER -t aliapovatijpes/phpmyadmin .
               cd ..
       
       - name: Build the mysql image
         run:  |
               cd mysql
-              docker build -t aliapovatijpes/lesson5:mysql-v$GITHUB_RUN_NUMBER -t aliapovatijpes/lesson5:mysql-latest .
+              docker build -t aliapovatijpes/mysql:$GITHUB_RUN_NUMBER -t aliapovatijpes/mysql .
                     
           
       - name: Push images to dockerhub
