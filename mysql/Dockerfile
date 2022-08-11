@@ -23,14 +23,10 @@ ENV MYSQLUSERPASS=$MYSQLUSERPASS
 ENV ROOTPASS=$ROOTPASS
 ENV USERNAMEIP=$USERNAMEIP
 
-#COPY entrypointmysql.sh /usr/local/bin/
-#COPY devops.sql /
 
-RUN apt-get install -y git 
-RUN git clone https://Aliapovatijpes:$GITTOKEN@github.com/Aliapovatijpes/Lesson4.git &&\
-    cp /Lesson4/mysql/* / &&\
-	rm -r -f /Lesson4/ &&\
-	chmod +x /entrypointmysql.sh &&\
-	cp entrypointmysql.sh /usr/local/bin/
+COPY entrypointphpmyadmin.sh /usr/local/bin/
+
+RUN     chmod +x /usr/local/bin/entrypointphpmyadmin.sh
+
 	
 ENTRYPOINT ["entrypointmysql.sh"]
