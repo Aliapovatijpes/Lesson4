@@ -24,9 +24,9 @@ ENV ROOTPASS=$ROOTPASS
 ENV USERNAMEIP=$USERNAMEIP
 
 
-COPY entrypointphpmyadmin.sh /usr/local/bin/
+COPY entrypointmysql.sh /usr/local/bin/
 
-RUN     chmod +x /usr/local/bin/entrypointphpmyadmin.sh
+RUN     chmod +x /usr/local/bin/entrypointmysql.sh
 
 	
 ENTRYPOINT ["entrypointmysql.sh"]
