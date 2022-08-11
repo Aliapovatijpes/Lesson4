@@ -13,19 +13,17 @@ jobs:
     steps:
       - name: Git clone my repo
         uses: actions/checkout@v3
-    
-            
-      - name: ls
-        run:  ls
-        
-      
+     
+      - name: login to dockerhub
+        run:  docker login -u ${{ secrets.DOCKERHUB_LOGIN }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
+     
       - name: Build the phpmyadmin image
         run:  |
               cd phpMyAdmin
               docker build -t aliapovatijpes/lesson5:phpmyadmin-latest -t aliapovatijpes/lesson5:phpmyadmin-v1 .
               cd ..
       
-      - name: Build the phpmyadmin image
+      - name: Build the mysql image
         run:  |
               cd mysql
                pwd
