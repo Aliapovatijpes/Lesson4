@@ -19,10 +19,11 @@ jobs:
         run:  ls
         
       - name: cd phpMyAdmin
-        run: cd phpMyAdmin
-                
-      - name: ls
-        run:  ls
+        run: |
+             pwd
+             cd phpMyAdmin
+             ls
+             pwd
         
     #  - name: Build the Docker image
      #   run:  docker build -t aliapovatijpes/lesson5:phpmyadmin-1 -t aliapovatijpes/lesson5:phpmyadmin-v1 ./phpMyAdmin
