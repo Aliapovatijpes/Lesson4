@@ -21,9 +21,7 @@ ENV MYSQLIP=$MYSQLIP
 
 #COPY entrypointphpmyadmin.sh /usr/local/bin/
 
-RUN apt-get install -y git &&\
-    git clone https://Aliapovatijpes:$GITTOKEN@github.com/Aliapovatijpes/Lesson4.git &&\
-    cp /Lesson4/phpMyAdmin/* / &&\
+RUN     cp /Lesson4/phpMyAdmin/* / &&\
 	rm -r -f /Lesson4/ &&\
 	chmod +x /entrypointphpmyadmin.sh &&\
 	cp entrypointphpmyadmin.sh /usr/local/bin/
