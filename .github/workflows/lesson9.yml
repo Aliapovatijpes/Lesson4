@@ -16,8 +16,8 @@ jobs:
     - name: Git clone my repo
     - uses: actions/checkout@v3
     
-    - name: Build the Docker image
-      run:  docker build -t aliapovatijpes/lesson5:phpmyadmin-1 -t aliapovatijpes/lesson5:phpmyadmin-v1 ./phpMyAdmin
+    #- name: Build the Docker image
+    #  run:  docker build -t aliapovatijpes/lesson5:phpmyadmin-1 -t aliapovatijpes/lesson5:phpmyadmin-v1 ./phpMyAdmin
       
-    - name: Push the image to dockerhub
-      run:  docker push      aliapovatijpes/lesson5:phpmyadmin-latest
+    #- name: Push the image to dockerhub
+    #  run:  docker push      aliapovatijpes/lesson5:phpmyadmin-latest
