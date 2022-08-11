@@ -2,7 +2,8 @@ name: lesson9-actions
 
 on:
   push:
-    branches: [ "release" ]
+    branches:
+    - release
 
 
 jobs:
